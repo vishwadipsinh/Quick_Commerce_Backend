@@ -10,7 +10,7 @@ const app = libExpress(); // Creating an Express application instance
 // app.use(cors()); // Enabling CORS for the application, allowing API access from different origins
 
 app.use(cors({
-  origin: 'http://localhost:5173', // your frontend origin
+  origin: '*', // your frontend origin
   credentials: true
 }));
 
