@@ -10,7 +10,9 @@ const app = libExpress(); // Creating an Express application instance
 // app.use(cors()); // Enabling CORS for the application, allowing API access from different origins
 
 app.use(cors({
-  origin: '*', // your frontend origin
+  origin: 'https://quick-commerce-frontend.onrender.com', // your frontend origin
+  // origin: 'http://localhost:5173', // your frontend origin
+
   credentials: true
 }));
 

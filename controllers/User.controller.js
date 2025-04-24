@@ -33,7 +33,7 @@ userController.userLogin = async (req, res) => {
             }
 
             res.cookie("token", token);    // Storing the token in a cookie            
-            res.status(200).json({ msg: "User logged in successfully", user: user.name }); // Sending a success response with the user's name
+            res.status(200).json({ msg: "User logged in successfully", user: user.name, token }); // Sending a success response with the user's name
         });
     } catch (e) {
         console.log(e);
@@ -61,11 +61,21 @@ userController.userRegister = async (req, res) => {
     }
 };
 
-// ------------------------- Get All Users -------------------------
-userController.getAll = async (req, res) => {
-    const users = await User.find(); // Fetching all users from the database
-    res.status(200).json(users); // Sending the list of users as a response
+// ------------------------- Get Users -------------------------
+
+
+userController.getUser = async (req, res) => {
+
+    // console.log("req👍👍👍👍👍👍👍",req)
+    try {
+        const user = await User.findOne({ email: req.user.emailid }).select('-__v -password');
+        if (!user) return res.status(404).json({ message: 'User not found' });
+        res.status(200).json(user);
+    } catch (err) {
+        res.status(500).json({ message: 'Server error' });
+    }
 };
+
 
 
 // Exporting the userController to be used in other parts of the application
