@@ -1,12 +1,12 @@
 const User = require('../models/User.model.js'); // Importing the User model to interact with the users collection in MongoDB
 const JWT = require('jsonwebtoken'); // Importing the JSON Web Token (JWT) library for authentication
 const bcrypt = require('bcrypt');
-
+require('dotenv').config();
 
 
 userController = {}; // Creating an empty object to store controller functions
 
-const JWT_SECRET_KEY = "nbjbdasojhcnsnayn984fujsdn"; // Defining a secret key for signing JWT tokens (should be stored in environment variables instead of hardcoding)
+const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY; // Defining a secret key for signing JWT tokens (should be stored in environment variables instead of hardcoding)
 
 // ------------------------- User Login -------------------------
 userController.userLogin = async (req, res) => {
